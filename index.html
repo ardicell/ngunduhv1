@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Downloader</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬇️</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1>Social Media Downloader</h1>
+                    <p>Download video & gambar dari YouTube, Instagram, Twitter, Facebook, TikTok</p>
+                </div>
+                <div class="theme-switch">
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span id="themeLabel">Mode Gelap</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="input-section card">
+                <div class="url-input-group">
+                    <input type="url" id="mediaUrl" placeholder="Tempel URL video atau foto di sini..." autocomplete="off">
+                    <button id="downloadBtn" class="primary-btn">
+                        <span class="btn-text">Ekstrak Media</span>
+                        <span class="loader hidden"></span>
+                    </button>
+                </div>
+                
+                <div class="platform-badges">
+                    <div class="badge youtube">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73z"/></svg>
+                        YouTube
+                    </div>
+                    <div class="badge instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z"/></svg>
+                        Instagram
+                    </div>
+                    <div class="badge twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+                        Twitter
+                    </div>
+                    <div class="badge facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"/></svg>
+                        Facebook
+                    </div>
+                    <div class="badge tiktok">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c0 1.67-.66 3.32-1.62 4.61c-1.58 2.08-4.32 3.2-6.93 2.72c-2.03-.37-3.77-1.67-4.75-3.61a6.91 6.91 0 0 1-.8-3.41c.1-3.39 2.85-6.13 6.22-6.22c.05-.91.23-1.83.54-2.73c.36-1.07 1.06-1.96 1.85-2.73c2.38-2.27 6.4-2.46 8.72-.69c.96.74 1.6 1.79 1.91 2.88c.48 1.64.5 3.37.35 5.06v.36c-.52.31-1.09.59-1.67.83c-1.92.8-4.14.96-6.25.51c-1.18-.25-2.31-.68-3.35-1.23c.01 1.7.01 3.4.01 5.1c0 .43.15.85.44 1.18c.5.58 1.4.68 2.01.23c.25-.19.44-.45.57-.74c.25-.58.27-1.22.13-1.82c-.14-.6-.46-1.14-.93-1.51c-.1-.08-.21-.16-.32-.23c.1.71.01 1.43-.26 2.09c-.29.71-.85 1.24-1.57 1.48c-.96.33-2.03.1-2.76-.6c-.52-.5-.78-1.18-.74-1.89c.06-1.13.8-2.18 1.9-2.53c1.4-.45 3.01.1 3.79 1.34c.11.18.21.36.29.55c-.01-1.28-.01-2.56-.01-3.84V8.41c0-1.21-.01-2.42-.01-3.63c.01-.17.07-.33.18-.46c.27-.3.74-.32 1.04-.06c.04.04.08.08.11.12c.01.01.01.01.01.02c.01 1.17.01 2.33.01 3.5c0 .3.02.6.07.9c.72-.52 1.5-.97 2.33-1.33c1.56-.69 3.32-.88 4.97-.55v-2.7c-1.43-.16-2.9-.05-4.28.35c-1.34.38-2.53 1.09-3.57 1.97c-.28-.31-.66-.56-1.06-.71c-.7-.25-1.48-.18-2.13.19c-.65.37-1.08 1.01-1.2 1.73c-.12.72.1 1.46.57 1.99c.21.24.47.43.76.57c-.02.16-.03.32-.03.48c0 1.3.01 2.6.01 3.9c0 1.62-.01 3.24.01 4.86c0 .92.28 1.82.81 2.58c.92 1.33 2.59 2.04 4.24 1.85c1.68-.2 3.19-1.2 3.92-2.72c.75-1.57.52-3.44-.61-4.81c-.8-.97-2-1.51-3.21-1.5c-.51 0-1.03.08-1.52.25c-.19.07-.37.15-.55.25c-.01-1.18-.01-2.37-.01-3.55c.01-1.5.01-3.01.01-4.51z"/></svg>
+                        TikTok
+                    </div>
+                </div>
+            </section>
+
+            <section class="result-section hidden card">
+                <div class="media-preview">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <img id="mediaThumb" src="" alt="Preview">
+                            <div class="play-icon hidden"></div>
+                        </div>
+                        <div class="loader hidden"></div>
+                    </div>
+                    <div class="media-info">
+                        <h2 id="mediaTitle"></h2>
+                        <div id="mediaMeta"></div>
+                    </div>
+                </div>
+                
+                <div class="download-options">
+                    <h3>Pilihan Download</h3>
+                    <div id="qualityList" class="quality-grid"></div>
+                </div>
+            </section>
+
+            <section class="history-section card">
+                <div class="section-header">
+                    <h3>Riwayat Download</h3>
+                    <button id="clearHistory" class="icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12z"/></svg>
+                    </button>
+                </div>
+                <div id="historyList" class="history-list"></div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <div class="container">
+                <p>© 2023 Social Media Downloader | Powered by Cloudflare Workers</p>
+                <div class="footer-links">
+                    <a href="#" id="aboutBtn">Tentang</a>
+                    <a href="#" id="helpBtn">Bantuan</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal hidden">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h3>Tentang Aplikasi</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Aplikasi ini memungkinkan Anda mendownload konten dari berbagai platform media sosial secara gratis dan mudah.</p>
+                <p><strong>Platform yang didukung:</strong></p>
+                <ul class="platform-list">
+                    <li>YouTube - Video</li>
+                    <li>Instagram - Foto & Video</li>
+                    <li>Twitter/X - Foto & Video</li>
+                    <li>Facebook - Video</li>
+                    <li>TikTok - Video & Audio</li>
+                </ul>
+                <p class="disclaimer">Disclaimer: Aplikasi ini hanya untuk penggunaan pribadi. Harap hormati hak cipta konten yang Anda download.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
